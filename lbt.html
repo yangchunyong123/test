@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	ul{
+		padding: 0;
+		margin: 0;
+		list-style: none;
+	}
+	/* 590*470 */
+		.box1{
+			width: 520px;
+			height: 280px;
+			position: relative;
+			overflow: hidden;
+			border:10px solid orange;
+			margin:20px auto;
+		}
+		.imgs1{
+			position: absolute;
+			top: 0;
+			left: 0;
+			display: flex;
+			transition: 2s;
+		}
+		.imgs1 img {
+			display: block;
+			/* vertical-align: middle; */
+		}
+		.arrows1 span{
+			position: absolute;
+			top:125px;
+			font-family: "Courier New";
+			font-size: 22px;
+			background:#000;
+			color: #fff;
+			width: 18px;
+			height: 23px;
+			line-height: 23px;
+			cursor: pointer;
+			opacity: 0;
+		}
+		.box1:hover .arrows1 span {
+			opacity: .5;
+		}
+		.box1 .arrows1 span:hover{
+			opacity: 1;
+		}
+		.arrows1 .left1{
+			left: 0;
+			border-radius: 0 9px 9px 0;
+		}
+		.arrows1 .right1{
+			right: 0;
+			border-radius: 9px 0 0 9px;
+		}
+		.dots1{
+			position: absolute;
+			bottom: 20px;
+			width: 100%;
+			display: flex;
+			justify-content: center;
+		}
+		.dots1 li{
+			width: 30px;
+			height: 30px;
+			font-size: 20px;
+			line-height: 30px;
+			text-align: center;
+			background: orange;
+			border-radius: 50%;
+			border:3px solid #ddd;
+			margin:0 2px;
+			cursor: pointer;
+		}
+		.dots1 .act {
+			background: green;
+			color: #fff;
+		}
+
+
+
+
+			.box{
+			width: 520px;
+			height: 280px;
+			position: relative;
+			overflow: hidden;
+			border:10px solid orange;
+			margin:20px auto;
+		}
+		.imgs{
+			position: absolute;
+			top: 0;
+			left: 0;
+		}
+		.imgs li {
+			position: absolute;
+			top: 0;
+			left: 0;
+			opacity: 0;
+			z-index:-1;
+			transition: 3s linear;
+		}
+		.imgs .show{
+			opacity: 1;
+			z-index: 0;
+		}
+		.imgs img {
+			display: block;
+			/* vertical-align: middle; */
+		}
+		.arrows span{
+			position: absolute;
+			top:125px;
+			font-family: "Courier New";
+			font-size: 22px;
+			background:#000;
+			color: #fff;
+			width: 18px;
+			height: 23px;
+			line-height: 23px;
+			cursor: pointer;
+			opacity: 0;
+		}
+		.box:hover .arrows span {
+			opacity: .5;
+		}
+		.box .arrows span:hover{
+			opacity: 1;
+		}
+		.arrows .left{
+			left: 0;
+			border-radius: 0 9px 9px 0;
+		}
+		.arrows .right{
+			right: 0;
+			border-radius: 9px 0 0 9px;
+		}
+		.dots{
+			position: absolute;
+			bottom: 20px;
+			width: 100%;
+			display: flex;
+			justify-content: center;
+			transition: 1s linear;
+		}
+		.dots li{
+			width: 30px;
+			height: 30px;
+			font-size: 20px;
+			line-height: 30px;
+			text-align: center;
+			background: orange;
+			border-radius: 50%;
+			border:3px solid #ddd;
+			margin:0 2px;
+			cursor: pointer;
+		}
+		.dots .act {
+			background: green;
+			color: #fff;
+		}
+	</style>
+</head>
+<body>
+	<div id="carousel01" class="box1">
+		<ul class="imgs1" style="left:0;">
+			<li><a href="#"><img src="images/01.jpg" alt="1"></a></li>
+			<li><a href="#"><img src="images/02.jpg" alt="2"></a></li>
+			<li><a href="#"><img src="images/03.jpg" alt="3"></a></li>
+			<li><a href="#"><img src="images/04.jpg" alt="4"></a></li>
+			<li><a href="#"><img src="images/05.jpg" alt="5"></a></li>
+		</ul>
+		<div class="arrows1">
+			<span class="left1">&lt;</span>
+			<span class="right1">&gt;</span>
+		</div>
+		<ul class="dots1">
+			<li class="act">1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+			<li>5</li>
+		</ul>
+	</div>
+
+
+
+	<div id="carousel02" class="box">
+		<ul class="imgs" style="left:0;">
+			<li class="show"><a href="#"><img src="images/01.jpg" alt="1"></a></li>
+			<li><a href="#"><img src="images/02.jpg" alt="2"></a></li>
+			<li><a href="#"><img src="images/03.jpg" alt="3"></a></li>
+			<li><a href="#"><img src="images/04.jpg" alt="4"></a></li>
+			<li><a href="#"><img src="images/05.jpg" alt="5"></a></li>
+		</ul>
+		<div class="arrows">
+			<span class="left">&lt;</span>
+			<span class="right">&gt;</span>
+		</div>
+		<ul class="dots">
+			<li class="act">1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+			<li>5</li>
+		</ul>
+	</div>
+	<script>
+		//轮播图的主要工作就是调整图片列表的定位或是显隐。编写思路：指定index值，根据index值显示对应的图片并设置按钮特殊样式
+		//获取轮播图显示区域
+		function abc(id){
+		var box=document.getElementById(id);
+		//图片列表
+		var imgs=box.getElementsByClassName('imgs1')[0];
+		//左箭头
+		var arrowL=box.getElementsByClassName('left1')[0];
+		//右箭头
+		var arrowR=box.getElementsByClassName('right1')[0];
+		//按钮容器
+		var dots=box.getElementsByClassName('dots1')[0];
+		//按钮列表
+		var btns=dots.getElementsByTagName('li');
+		var imgWidth=520;//一副图宽度
+		var index=0;//当前显示的图片序号，0号开始
+		var n=btns.length;//图片数量、按钮数量
+		// 当前显示的图片序号，0号开始，范围是[0,n-1]
+		var t=null;//定时器标量
+		var s=3;//自轮播的时间间隔(秒)
+		// 显示指定index对应的图片
+		function showImg(index){
+			imgs.style.left=-1*index*imgWidth+'px';
+		}
+		//指定index的按钮显示特殊样式
+		function showBtn(index){
+			for(var i=0;i<btns.length;i++){
+				btns[i].removeAttribute('class');
+			}
+			btns[index].className='act';
+		}
+		arrowR.onclick=function(){
+		  index=index<n-1?index+1:0;
+			showImg(index);
+			showBtn(index);
+		}
+	  arrowL.onclick=function(){
+			index=index>0?index-1:n-1;
+			showImg(index);
+			showBtn(index);
+		}
+		//设置所有按钮的点击事件
+		for(var i=0;i<btns.length;i++){
+			btns[i].idx=i;
+			btns[i].onclick=function(){
+				index=this.idx;
+				showImg(index);
+				showBtn(index);
+			}
+		}
+		//鼠标进入轮播图区域时，停止自动轮播
+		box.onmouseover=function(){
+			clearInterval(t);
+		}
+		//鼠标离开轮播图区域时，继续自动轮播
+		box.onmouseout=function(){
+			t=setInterval(arrowR.onclick,s*1000);
+		}
+		box.onmouseout();//执行一次mouseout操作，开启定时器
+}
+abc('carousel01')
+
+
+
+		function lbt(id){
+		var box=document.getElementById(id);
+		//图片列表
+		var imgsBox=box.getElementsByClassName('imgs')[0];
+		//左箭头
+		var imgs=imgsBox.getElementsByTagName('li');
+		var arrowL=box.getElementsByClassName('left')[0];
+		//右箭头
+		var arrowR=box.getElementsByClassName('right')[0];
+		//按钮容器
+		var dots=box.getElementsByClassName('dots')[0];
+		//按钮列表
+		var btns=dots.getElementsByTagName('li');
+		// var imgWidth=520;//一副图宽度
+		var index=0;//当前显示的图片序号，0号开始
+		var n=btns.length;//图片数量、按钮数量
+		// 当前显示的图片序号，0号开始，范围是[0,n-1]
+		var t=null;//定时器标量
+		var s=2;//自轮播的时间间隔(秒)
+		// 显示指定index对应的图片
+		function showImg(index){
+			for(var i=0;i<n;i++){
+				imgs[i].removeAttribute('class')
+			}
+			imgs[index].className='show';
+		}
+		//指定index的按钮显示特殊样式
+		function showBtn(index){
+			for(var i=0;i<btns.length;i++){
+				btns[i].removeAttribute('class');
+			}
+			btns[index].className='act';
+		}
+		arrowR.onclick=function(){
+		  index=index<n-1?index+1:0;
+			showImg(index);
+			showBtn(index);
+		}
+	  arrowL.onclick=function(){
+			index=index>0?index-1:n-1;
+			showImg(index);
+			showBtn(index);
+		}
+		//设置所有按钮的点击事件
+		for(var i=0;i<btns.length;i++){
+			btns[i].idx=i;
+			btns[i].onmouseover=function(){
+				index=this.idx;
+				showImg(index);
+				showBtn(index);
+			}
+		}
+		//鼠标进入轮播图区域时，停止自动轮播
+		box.onmouseover=function(){
+			clearInterval(t);
+		}
+		//鼠标离开轮播图区域时，继续自动轮播
+		box.onmouseout=function(){
+			t=setInterval(arrowR.onclick,s*1000);
+		}
+		box.onmouseout();//执行一次mouseout操作，开启定时器
+	}
+	lbt('carousel02')
+	</script>
+</body>
+</html>
