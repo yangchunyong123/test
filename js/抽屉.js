@@ -1,7 +1,7 @@
 var ctboxs=document.getElementById('ct1');
 var ctbox=ctboxs.getElementsByClassName('ctbox');
 var title=ctboxs.getElementsByClassName('title');
-var titleWidth=56;
+var titleWidth=58;
 var contentWidth=520;
 for(var i=0;i<title.length;i++){
 	title[i].index=i;
